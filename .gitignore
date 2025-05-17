@@ -1,0 +1,41 @@
+# Node.js
+node_modules/
+
+whisper-venv/
+# TypeScript
+dist/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# IDE settings
+.vscode/
+.idea/
+
+# Coverage reports
+coverage/
+
+# Miscellaneous
+*.tgz
+*wav
+*.vtt
+*.txt
+*.tsv
+*.json
+!package*.json
+!ts*.json
+!nodemon.json
+*.srt
+!requirements.txt
