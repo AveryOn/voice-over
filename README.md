@@ -17,12 +17,7 @@ pip install -r requirements.txt
 
 ```bash
 # Запуск в разработке
-npm run dev
-```
-
-```bash
-# Запуск в проде
-npm run start
+python ./src/speak.py "Я твой локальный ассистент. Слушаю внимательно"   #  или python3 если на Windows
 ```
 
 ```bash
