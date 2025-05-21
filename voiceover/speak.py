@@ -38,21 +38,22 @@ def speak(text: str):
         print("❌ Текст для озвучки пустой. Пропускаем.")
         return
 
-    text = clean_text(text)
+
     sd.default.device = 8
     all_audio = []
     PAUSE = np.zeros((int(SAMPLE_RATE * 0.2), 2), dtype=np.float32)
 
     # защита от пустых строк
     if not text.strip():
-        return None
+        return
     
     try:
+        text = clean_text(text)
         text = ensure_end_punctuation(text)
         text = pad_if_too_short(text) 
-        chunk = model.apply_tts(texts=[text], sample_rate=SAMPLE_RATE)
-        chunk_np = np.array(chunk, dtype=np.float32).flatten()
-        stereo = np.column_stack((chunk_np, chunk_np))
+
+        chunk = model.apply_tts([text], sample_rate=SAMPLE_RATE)
+        stereo = np.column_stack((chunk, chunk))
         all_audio.append(stereo)
         all_audio.append(PAUSE)
     except Exception as e:
@@ -65,7 +66,7 @@ def speak(text: str):
     if not all_audio:
         print("[FALLBACK ONLY] Используем системный синтезатор.")
         subprocess.run(["spd-say", text])
-        return None
+        return
         
     final_audio = np.concatenate(all_audio)
     start = time()
